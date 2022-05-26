@@ -6,8 +6,8 @@ export interface DirectMassage{
 
 export class DirectMassage {
   name!: string;
-  users!: string[];
-  key!: string; // User UID from Firebase Auth
+  users!: string[]; // Array containing user UID's from Firebase Auth 
+  key!: string; 
 
   constructor(directMassageJSON: DirectMassage){
     this.name = directMassageJSON ? directMassageJSON.name : '';

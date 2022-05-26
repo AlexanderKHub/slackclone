@@ -7,7 +7,7 @@ export interface Channel{
 export class Channel {
   name!: string;
   description!: string;
-  key!: string; // User UID from Firebase Auth
+  key!: string; 
 
   constructor(channelJSON: Channel){
     this.name = channelJSON ? channelJSON.name : '';
