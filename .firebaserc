@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "slack-44d87": {
+      "hosting": {
+        "slack": [
+          "slack-44d87"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "slack-44d87"
+  }
+}
