@@ -15,12 +15,14 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { HomeComponent } from './home/home.component';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    DialogAddChannelComponent,
   ],
   imports: [
     BrowserModule,

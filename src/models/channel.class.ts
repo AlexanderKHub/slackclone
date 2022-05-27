@@ -9,7 +9,7 @@ export class Channel {
   description!: string;
   key!: string; 
 
-  constructor(channelJSON: Channel){
+  constructor(channelJSON: any){
     this.name = channelJSON ? channelJSON.name : '';
     this.description = channelJSON ? channelJSON.description : '';
     this.key = channelJSON ? channelJSON.key : '';
