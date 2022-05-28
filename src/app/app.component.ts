@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Channel } from 'src/models/channel.class';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'slack';
+  allChannels: Channel[] = [new Channel({
+    'name': 'TestChannel',
+    'description': 'Dies ist ein Test',
+    'key': 'jachsdvahc'
+  })];
+
+  constructor(){}
+
+  addChannel() {
+    
+  }
+
 }

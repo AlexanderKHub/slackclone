@@ -1,11 +1,17 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
+    <ul>
+      <li *ngFor="let channel of allChannels">
+        {{channel.name}}
+      </li>
+      <li (click)="addChannel()">Add Channel</li>
+    </ul>
   </mat-drawer>
   <mat-drawer-content>
     <div class="top-menu"></div>
     <!--main content-->
     <router-outlet></router-outlet>
-    <ngx-auth-firebaseui></ngx-auth-firebaseui>
+    
   </mat-drawer-content>
 </mat-drawer-container>
