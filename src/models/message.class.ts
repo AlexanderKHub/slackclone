@@ -1,10 +1,9 @@
-export interface Message{
-  content: string,
-  author: string,
-  imageLinks: string[],
-  time: Date,
-  channelKey: string,
-  key: string
+export interface Message {
+  content: string;
+  author: string;
+  imageLinks: string[];
+  time: Date;
+  channelKey: string;
 }
 
 export class Message {
@@ -13,15 +12,13 @@ export class Message {
   imageLinks!: string[];
   time!: Date;
   channelKey!: string;
-  key!: string;
 
-  constructor(messageJSON: Message){
+  constructor(messageJSON?: Message) {
     this.content = messageJSON ? messageJSON.content : '';
     this.author = messageJSON ? messageJSON.author : '';
     this.imageLinks = messageJSON ? messageJSON.imageLinks : [];
     this.time = messageJSON ? new Date(messageJSON.time) : new Date();
     this.channelKey = messageJSON ? messageJSON.channelKey : '';
-    this.key = messageJSON ? messageJSON.key : '';
   }
 
   toJSON() {
@@ -31,8 +28,6 @@ export class Message {
       imageLinks: this.imageLinks,
       time: this.time.getTime(),
       channelKey: this.channelKey,
-      key: this.key
     };
   }
-
 }

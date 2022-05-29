@@ -2,8 +2,11 @@
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
     <ul>
-      <li (click)="openChannel(channel)" *ngFor="let channel of allChannels">
-        {{channel.name}}
+      <li
+        [routerLink]="['home', auth.userKey, channel.channelid]"
+        *ngFor="let channel of allChannels"
+      >
+        {{ channel.name }}
       </li>
       <li (click)="openDialog()">Add Channel</li>
     </ul>
@@ -12,6 +15,5 @@
     <div class="top-menu"></div>
     <!--main content-->
     <router-outlet></router-outlet>
-    
   </mat-drawer-content>
 </mat-drawer-container>

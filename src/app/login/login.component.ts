@@ -6,25 +6,19 @@ import { AuthUserService } from '../auth-user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  constructor(private auth: AuthUserService, private router: Router) {}
 
-  constructor(
-    private auth: AuthUserService,
-    private router: Router
-    ){ }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  logInSuccess(event: any){
+  logInSuccess(event: any) {
     this.auth.userKey = event.user.multiFactor.user.uid;
-    this.router.navigateByUrl(`/home/${this.auth.userKey}`);
+    this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
   }
 
-  logInError(event: any){
+  logInError(event: any) {
     // Handle Error
   }
-  
 }
