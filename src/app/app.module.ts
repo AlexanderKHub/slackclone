@@ -16,13 +16,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { HomeComponent } from './home/home.component';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DialogAddChannelComponent,
+    DialogAddChannelComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,11 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
     BrowserAnimationsModule,
     RouterModule,
     MatSidenavModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
