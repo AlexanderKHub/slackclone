@@ -2,7 +2,7 @@
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
     <ul>
-      <li *ngFor="let channel of allChannels">
+      <li (click)="openChannel(channel)" *ngFor="let channel of allChannels">
         {{channel.name}}
       </li>
       <li (click)="openDialog()">Add Channel</li>
