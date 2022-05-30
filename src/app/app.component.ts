@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { AuthUserService } from './auth-user.service';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
@@ -23,7 +25,9 @@ export class AppComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private firestore: AngularFirestore,
-    public auth: AuthUserService
+    public auth: AuthUserService,
+    public authUser: AngularFireAuth,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +37,12 @@ export class AppComponent implements OnInit {
       .subscribe((changes: any) => {
         this.allChannels = changes;
       });
+      
+    this.authUser.user.subscribe((user) => {
+      if(!user?.uid) return;
+      this.auth.userKey = user?.uid;
+      this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
+    })
   }
 
   openDialog(): void {

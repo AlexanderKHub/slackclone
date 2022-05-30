@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthUserService {
-  userKey: string = '';
+  userKey: any = '';
 
   constructor() {}
 }
