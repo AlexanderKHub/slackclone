@@ -1,6 +1,7 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
+    <b>Channels</b>
     <ul>
       <li
         [routerLink]="['home', auth.userKey, channel.channelid]"
@@ -10,9 +11,10 @@
       </li>
       <li (click)="openDialog()">Add Channel</li>
     </ul>
-    <span>Direct Messages</span>
+    <b>Direct Messages</b>
     <ul>
-      <li *ngFor="let message of allDirectMessages">
+      <li *ngFor="let message of allDirectMessages" 
+        [routerLink]="['home', auth.userKey, message.directMessageId]">
         {{message.name}}
       </li>
       <li (click)="openDialogDirectMessage()">Add Direct Message</li>

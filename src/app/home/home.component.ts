@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { User } from 'src/models/user.class';
+import { Directionality } from '@angular/cdk/bidi';
+import { DirectMassage } from 'src/models/directMessage.class';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +18,7 @@ export class HomeComponent implements OnInit {
     description: 'Dies ist ein Test',
     key: 'jachsdvahc',
   });
+  // activeDirectMessage: any = new DirectMassage();
   authorId: string = '';
   messages!: Message[];
   users: any = [];
@@ -40,6 +43,16 @@ export class HomeComponent implements OnInit {
         .doc(params['channelid'])
         .valueChanges({ idField: 'channelid' })
         .subscribe((changes: any) => {
+          if(!changes.name) return; 
+          this.activeChannel = changes;
+        });
+
+        this.firestore
+        .collection('directMessages')
+        .doc(params['channelid'])
+        .valueChanges({ idField: 'channelid' })
+        .subscribe((changes: any) => {
+          if(!changes.name) return; 
           this.activeChannel = changes;
         });
 
