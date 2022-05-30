@@ -4,7 +4,7 @@
     <b>Channels</b>
     <ul>
       <li
-        [routerLink]="['home', auth.userKey, channel.channelid]"
+        [routerLink]="['home', auth.userKey, channel.channelid, '']"
         *ngFor="let channel of allChannels"
       >
         {{ channel.name }}
@@ -14,15 +14,20 @@
     <b>Direct Messages</b>
     <ul>
       <li *ngFor="let message of allDirectMessages" 
-        [routerLink]="['home', auth.userKey, message.directMessageId]">
+        [routerLink]="['home', auth.userKey, message.directMessageId, '']">
         {{message.name}}
       </li>
       <li (click)="openDialogDirectMessage()">Add Direct Message</li>
     </ul>
+    <button [routerLink]="''">Log out</button>
   </mat-drawer>
   <mat-drawer-content>
     <div class="top-menu"></div>
     <!--main content-->
-    <router-outlet></router-outlet>
+    <div class="router-outlet-div">
+      <router-outlet></router-outlet>
+      <router-outlet name="router2"></router-outlet>
+    </div>
+    
   </mat-drawer-content>
 </mat-drawer-container>

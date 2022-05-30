@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     this.authUser.user.subscribe((user) => {
       if(!user?.uid) return;
       this.auth.userKey = user?.uid;
-      this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
+      this.router.navigateByUrl(`/home/${this.auth.userKey}/test/`);
       this.firestore
       .collection('directMessages')
       .valueChanges({idField: 'directMessageId'})
