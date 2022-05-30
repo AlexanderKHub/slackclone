@@ -20,8 +20,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { DialogAddDirectMessageComponent } from './dialog-add-direct-message/dialog-add-direct-message.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
     LoginComponent,
     HomeComponent,
     DialogAddChannelComponent,
+    DialogAddDirectMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     MatCardModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

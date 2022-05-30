@@ -10,6 +10,13 @@
       </li>
       <li (click)="openDialog()">Add Channel</li>
     </ul>
+    <span>Direct Messages</span>
+    <ul>
+      <li *ngFor="let message of allDirectMessages">
+        {{message.name}}
+      </li>
+      <li (click)="openDialogDirectMessage()">Add Direct Message</li>
+    </ul>
   </mat-drawer>
   <mat-drawer-content>
     <div class="top-menu"></div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
+import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   });
   authorId: string = '';
   messages!: Message[];
+  users: any = [];
 
   constructor(
     private firestore: AngularFirestore,
@@ -24,6 +26,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.firestore
+      .collection('users')
+      .valueChanges({idField: 'userId'})
+      .subscribe((changes: any) => {
+        this.users = changes;
+      })
+
     this.route.params.subscribe((params) => {
       this.authorId = params['uid'];
       this.firestore
@@ -38,11 +47,26 @@ export class HomeComponent implements OnInit {
         .collection('messages')
         .valueChanges({ idField: 'messageId' })
         .subscribe((changes: any) => {
-          this.messages = changes.filter((message: any) => {
+          this.messages = changes
+          .filter((message: any) => {
             return message.channelKey == this.activeChannel.channelid;
+          })
+          .sort((mess1: any, mess2: any) => {
+            return mess1.time - mess2.time;
           });
         });
+      
+      this.firestore
+      .collection('users')
+      .valueChanges({idField: 'userId'})
+      .subscribe((changes: any) => {
+        this.users = changes;
+      })
     });
+  }
+
+  getUserById(userId: string){
+    return this.users.find((user: any) => user.userId == userId);
   }
 
   sendMessage(message: string) {
