@@ -1,25 +1,31 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
-    <b>Channels</b>
-    <ul>
-      <li
-        [routerLink]="['home', auth.userKey, channel.channelid]"
-        *ngFor="let channel of allChannels"
-      >
-        {{ channel.name }}
-      </li>
-      <li (click)="openDialog()">Add Channel</li>
-    </ul>
-    <b>Direct Messages</b>
-    <ul>
-      <li *ngFor="let message of allDirectMessages" 
-        [routerLink]="['home', auth.userKey, message.directMessageId]">
-        {{message.name}}
-      </li>
-      <li (click)="openDialogDirectMessage()">Add Direct Message</li>
-    </ul>
-    <button [routerLink]="''">Log out</button>
+    <div id="side-nav-content">
+      <b>Channels</b>
+      <div class="channels-container">
+      <ul>
+        <li
+          [routerLink]="['home', auth.userKey, channel.channelid]"
+          *ngFor="let channel of allChannels"
+        >
+          # {{ channel.name }}
+        </li>
+        <li (click)="openDialog()">Add Channel</li>
+      </ul>
+      </div>
+      <b>Direct Messages</b>
+      <div class="channels-container">
+      <ul>
+        <li *ngFor="let message of allDirectMessages" 
+          [routerLink]="['home', auth.userKey, message.directMessageId]">
+          {{message.name}}
+        </li>
+        <li (click)="openDialogDirectMessage()">Add Direct Message</li>
+      </ul>
+    </div>
+    </div>
+    <button id="log-out-button" mat-button color="warn" [routerLink]="''">Log Out</button>
   </mat-drawer>
   <mat-drawer-content>
     <div class="top-menu"></div>
