@@ -6,6 +6,7 @@ import { Channel } from 'src/models/channel.class';
 import { User } from 'src/models/user.class';
 import { Directionality } from '@angular/cdk/bidi';
 import { DirectMassage } from 'src/models/directMessage.class';
+import { Thread } from 'src/models/thread.class';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,12 @@ export class HomeComponent implements OnInit {
   });
   // activeDirectMessage: any = new DirectMassage();
   authorId: string = '';
-  messages!: Message[];
+  messages!: any;
   users: any = [];
+  showThread = false;
+  activeThread!: any;
+  allThreads!: any;
+  currentMessageId!: string;
 
   constructor(
     private firestore: AngularFirestore,
@@ -47,7 +52,7 @@ export class HomeComponent implements OnInit {
           this.activeChannel = changes;
         });
 
-        this.firestore
+      this.firestore
         .collection('directMessages')
         .doc(params['channelid'])
         .valueChanges({ idField: 'channelid' })
@@ -67,6 +72,7 @@ export class HomeComponent implements OnInit {
           .sort((mess1: any, mess2: any) => {
             return mess1.time - mess2.time;
           });
+          this.loadAllThreads();
         });
       
       this.firestore
@@ -76,6 +82,27 @@ export class HomeComponent implements OnInit {
         this.users = changes;
       })
     });
+  }
+
+  loadAllThreads() {
+    this.firestore
+    .collection('threads')
+    .valueChanges({idField: 'threadId'})
+    .subscribe((changes: any) => {
+      console.log('Update AllThreads from firebase');
+      
+      this.allThreads = changes.filter((thread: Thread) => {
+        for (let i = 0; i < this.messages.length; i++) {
+          if (this.messages[i].messageId == thread.messageKey) return true;
+        }
+        return false;
+      });
+      this.findMessageThread(this.currentMessageId);
+    })
+  }
+
+  findMessageThread(messageId: string){
+    this.activeThread = this.allThreads.filter((thread: any) => messageId == thread.messageKey);
   }
 
   getUserById(userId: string){
@@ -88,5 +115,21 @@ export class HomeComponent implements OnInit {
     newMessage.author = this.authorId;
     newMessage.channelKey = this.activeChannel.channelid;
     this.firestore.collection('messages').add(newMessage.toJSON());
+  }
+
+  openThread(message: any){
+    this.findMessageThread(message.messageId);
+    this.currentMessageId = message.messageId;
+    this.showThread = true;
+  }
+
+  sendThreadMessage(message: string) {
+    let newThread: Thread = new Thread();
+    newThread.content = message;
+    newThread.author = this.authorId;
+    newThread.messageKey = this.currentMessageId;
+    console.log(newThread);
+    
+    this.firestore.collection('threads').add(newThread.toJSON());
   }
 }

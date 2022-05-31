@@ -6,8 +6,7 @@ import { ThreadComponent } from './thread/thread.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'home/:uid/:channelid/:treadid', component: HomeComponent},
-  { path: 'home/:uid/:channelid/:treadid', component: ThreadComponent, outlet: 'router2'},
+  { path: 'home/:uid/:channelid', component: HomeComponent}
 ];
 
 @NgModule({

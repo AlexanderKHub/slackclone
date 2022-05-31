@@ -1,23 +1,52 @@
 <h2>{{ activeChannel.name }}</h2>
+<div>
+  <div>
+    <mat-card *ngFor="let message of messages" (click)="openThread(message)">
+      <div>{{ getUserById(message.author).displayName}}</div>
+      <div>{{ message.content }}</div>
+      <div>{{ message.time | date : 'medium'}}</div>
+    </mat-card>
 
-<mat-card *ngFor="let message of messages">
-  <div>{{ getUserById(message.author).displayName}}</div>
-  <div>{{ message.content }}</div>
-  <div>{{ message.time | date : 'medium'}}</div>
-</mat-card>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Message</mat-label>
-    <input
-      matInput
-      #message
-      maxlength="256"
-      placeholder="Ex. I need help with..."
-    />
-    <mat-hint align="start"
-      ><strong>Don't disclose personal info</strong>
-    </mat-hint>
-    <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
-  </mat-form-field>
-  <button mat-button (click)="sendMessage(message.value)">Basic</button>
-</form>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Message</mat-label>
+        <input
+          matInput
+          #message
+          maxlength="256"
+          placeholder="Ex. I need help with..."
+        />
+        <mat-hint align="start"
+          ><strong>Don't disclose personal info</strong>
+        </mat-hint>
+        <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
+      </mat-form-field>
+      <button mat-button (click)="sendMessage(message.value)">Basic</button>
+    </form>
+  </div>
+  <div *ngIf="showThread">
+    <mat-card *ngFor="let thread of activeThread">
+      <div>{{ getUserById(thread.author).displayName}}</div>
+      <div>{{ thread.content }}</div>
+      <div>{{ thread.time | date : 'medium'}}</div>
+    </mat-card>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Thread Message</mat-label>
+        <input
+          matInput
+          #message
+          maxlength="256"
+          placeholder="Ex. I need help with..."
+        />
+        <mat-hint align="start"
+          ><strong>Don't disclose personal info</strong>
+        </mat-hint>
+        <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
+      </mat-form-field>
+      <button mat-button (click)="sendThreadMessage(message.value)">Basic</button>
+    </form>
+  </div>
+</div>
+

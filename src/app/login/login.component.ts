@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   logInSuccess(event: any) {
     this.auth.userKey = event.user.multiFactor.user.uid;
-    this.router.navigateByUrl(`/home/${this.auth.userKey}/test/`);
+    this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
   }
 
   logInError(event: any) {
