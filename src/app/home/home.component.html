@@ -42,6 +42,9 @@
     <mat-card *ngFor="let thread of activeThread">
       <div>{{ getUserById(thread.author).displayName }}</div>
       <div [innerHTML]="thread.content"></div>
+      <div *ngFor="let imgURL of thread.imageLinks">
+        <a [href]="imgURL"><img [src]="imgURL" width="100" height="100"></a>
+      </div>
       <div>{{ thread.time | date: "medium" }}</div>
     </mat-card>
 
@@ -61,7 +64,7 @@
         >
         </editor>
         <button mat-button (click)="sendThreadMessage()">Send</button>
-        <input type="file" (change)="upload($event)" accept=".png,.jpg"/>
+        <input type="file" (change)="uploadThread($event)" accept=".png,.jpg"/>
       </div>
     </div>
   </div>
