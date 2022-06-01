@@ -1,6 +1,6 @@
 <h2>{{ activeChannel.name }}</h2>
 <div>
-  <div>
+  <div class="message">
     <mat-card *ngFor="let message of messages" (click)="openThread(message)">
       <div>{{ getUserById(message.author).displayName }}</div>
       <div [innerHTML]="message.content "></div>
