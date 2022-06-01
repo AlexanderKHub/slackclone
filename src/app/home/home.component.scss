@@ -1,5 +1,5 @@
 .message {
-  width: 100%;
+  width: 70%;
   height: 100%;
 }
 
@@ -17,4 +17,29 @@
 .mat-button {
   width: 10% !important;
   min-height: 100% !important;
+}
+
+// message
+
+.name {
+  font-weight: 700;
+}
+
+.message-content {
+}
+
+.message-time {
+  font-size: 10px;
+  color: lightgrey;
+}
+
+// Thread
+
+.thread {
+  z-index: 3;
+  position: relative;
+  background-color: blue !important;
+}
+
+.openthread {
 }

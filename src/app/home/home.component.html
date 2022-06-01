@@ -26,9 +26,11 @@
   </div>
   <div *ngIf="showThread">
     <mat-card>
-      <div>{{ getUserById(currentMessage.author).displayName }}</div>
-      <div>{{ currentMessage.content }}</div>
-      <div>{{ currentMessage.time | date: "medium" }}</div>
+      <div class="name">
+        {{ getUserById(currentMessage.author).displayName }}
+      </div>
+      <div class="message-content">{{ currentMessage.content }}</div>
+      <div class="date">{{ currentMessage.time | date: "medium" }}</div>
     </mat-card>
     <mat-card *ngFor="let thread of activeThread">
       <div>{{ getUserById(thread.author).displayName }}</div>
@@ -45,14 +47,14 @@
           maxlength="256"
           placeholder="Ex. I need help with..."
         />
+        <button mat-button (click)="sendThreadMessage(message.value)">
+          Basic
+        </button>
         <mat-hint align="start"
           ><strong>Don't disclose personal info</strong>
         </mat-hint>
         <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
       </mat-form-field>
-      <button mat-button (click)="sendThreadMessage(message.value)">
-        Basic
-      </button>
     </form>
   </div>
 </div>
