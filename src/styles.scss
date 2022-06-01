@@ -3,6 +3,11 @@
 html,
 body {
   height: 100%;
+
+  h2 {
+    border-bottom: solid 1px rgba($color: #000000, $alpha: 0.1);
+    margin: 0 !important;
+  }
 }
 body {
   margin: 0;
