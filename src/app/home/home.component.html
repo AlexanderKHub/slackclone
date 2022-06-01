@@ -1,9 +1,9 @@
 <h2>{{ activeChannel.name }}</h2>
-<div>
+<div class="home-container">
   <div class="message">
     <mat-card *ngFor="let message of messages" (click)="openThread(message)">
       <div>{{ getUserById(message.author).displayName }}</div>
-      <div [innerHTML]="message.content "></div>
+      <div [innerHTML]="message.content"></div>
       <div>{{ message.time | date: "medium" }}</div>
     </mat-card>
 
@@ -52,14 +52,16 @@
       <div>{{ thread.time | date: "medium" }}</div>
     </mat-card>
 
-    <editor [init]="{
-      menubar: 'file edit view',
-      toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-     }" [(ngModel)]="htmlThread">
+    <editor
+      [init]="{
+        menubar: 'file edit view',
+        toolbar:
+          'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+      }"
+      [(ngModel)]="htmlThread"
+    >
     </editor>
-    <button mat-button (click)="sendThreadMessage()">
-      Send
-    </button>
+    <button mat-button (click)="sendThreadMessage()">Send</button>
 
     <!-- <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
@@ -70,6 +72,9 @@
           maxlength="256"
           placeholder="Ex. I need help with..."
         />
+        <button mat-button (click)="sendThreadMessage(message.value)">
+          Basic
+        </button>
         <mat-hint align="start"
           ><strong>Don't disclose personal info</strong>
         </mat-hint>
@@ -81,4 +86,3 @@
     </form> -->
   </div>
 </div>
-
