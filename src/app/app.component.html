@@ -4,28 +4,32 @@
     <div id="side-nav-content">
       <b>Channels</b>
       <div class="channels-container">
-      <ul>
-        <li
-          [routerLink]="['home', auth.userKey, channel.channelid]"
-          *ngFor="let channel of allChannels"
-        >
-          # {{ channel.name }}
-        </li>
-        <li (click)="openDialog()">Add Channel</li>
-      </ul>
+        <ul>
+          <li
+            [routerLink]="['home', auth.userKey, channel.channelid]"
+            *ngFor="let channel of allChannels"
+          >
+            # {{ channel.name }}
+          </li>
+          <li (click)="openDialog()">Add Channel</li>
+        </ul>
       </div>
       <b>Direct Messages</b>
       <div class="channels-container">
-      <ul>
-        <li *ngFor="let message of allDirectMessages" 
-          [routerLink]="['home', auth.userKey, message.directMessageId]">
-          {{message.name}}
-        </li>
-        <li (click)="openDialogDirectMessage()">Add Direct Message</li>
-      </ul>
+        <ul>
+          <li
+            *ngFor="let message of allDirectMessages"
+            [routerLink]="['home', auth.userKey, message.directMessageId]"
+          >
+            {{ message.name }}
+          </li>
+          <li (click)="openDialogDirectMessage()">Add Direct Message</li>
+        </ul>
+      </div>
     </div>
-    </div>
-    <button id="log-out-button" mat-button color="warn" [routerLink]="''">Log Out</button>
+    <button id="log-out-button" mat-button color="warn" [routerLink]="''">
+      Log Out
+    </button>
   </mat-drawer>
   <mat-drawer-content>
     <div class="top-menu"></div>
@@ -33,6 +37,5 @@
     <div class="router-outlet-div">
       <router-outlet></router-outlet>
     </div>
-    
   </mat-drawer-content>
 </mat-drawer-container>
