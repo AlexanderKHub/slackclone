@@ -11,7 +11,7 @@
       <div class="editor-div">
         <editor [init]="{
           toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-          height: 200,
+          height: 150,
           branding: false,
           menubar:false,
           statusbar: false,
@@ -24,22 +24,6 @@
         </button>
       </div>
     </div>
-    <!-- <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Message</mat-label>
-        <input
-          matInput
-          #message
-          maxlength="256"
-          placeholder="Ex. I need help with..."
-        />
-        <mat-hint align="start"
-          ><strong>Don't disclose personal info</strong>
-        </mat-hint>
-        <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
-      </mat-form-field>
-      <button mat-button (click)="sendMessage(message.value)">Basic</button>
-    </form> -->
   </div>
   <div *ngIf="showThread">
     <mat-card>
@@ -58,10 +42,11 @@
         <editor
           [init]="{
             toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-              height: 200,
+              height: 150,
               branding: false,
               menubar:false,
-              statusbar: false
+              statusbar: false,
+              browser_spellcheck: true
           }"
           [(ngModel)]="htmlThread"
         >
@@ -69,26 +54,5 @@
         <button mat-button (click)="sendThreadMessage()">Send</button>
       </div>
     </div>
-    <!-- <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Thread Message</mat-label>
-        <input
-          matInput
-          #message2
-          maxlength="256"
-          placeholder="Ex. I need help with..."
-        />
-        <button mat-button (click)="sendThreadMessage(message.value)">
-          Basic
-        </button>
-        <mat-hint align="start"
-          ><strong>Don't disclose personal info</strong>
-        </mat-hint>
-        <mat-hint align="end">{{ message2.value.length }} / 256</mat-hint>
-      </mat-form-field>
-      <button mat-button (click)="sendThreadMessage(message2.value)">
-        Basic
-      </button>
-    </form> -->
   </div>
 </div>
