@@ -1,20 +1,22 @@
 <h2>{{ activeChannel.name }}</h2>
-<div>
+<div class="home-container">
   <div class="message">
     <mat-card *ngFor="let message of messages" (click)="openThread(message)">
       <div>{{ getUserById(message.author).displayName }}</div>
-      <div [innerHTML]="message.content "></div>
+      <div [innerHTML]="message.content"></div>
       <div>{{ message.time | date: "medium" }}</div>
     </mat-card>
 
-    <editor [init]="{
-    menubar: 'file edit view',
-    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-    }" [(ngModel)]="htmlMessage">
+    <editor
+      [init]="{
+        menubar: 'file edit view',
+        toolbar:
+          'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+      }"
+      [(ngModel)]="htmlMessage"
+    >
     </editor>
-    <button mat-button (click)="sendMessage()">
-      Send
-    </button>
+    <button mat-button (click)="sendMessage()">Send</button>
 
     <!-- <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
@@ -35,17 +37,9 @@
   </div>
   <div *ngIf="showThread">
     <mat-card>
-<<<<<<< HEAD
-      <div class="name">
-        {{ getUserById(currentMessage.author).displayName }}
-      </div>
-      <div class="message-content">{{ currentMessage.content }}</div>
-      <div class="date">{{ currentMessage.time | date: "medium" }}</div>
-=======
       <div>{{ getUserById(currentMessage.author).displayName }}</div>
       <div [innerHTML]="currentMessage.content"></div>
       <div>{{ currentMessage.time | date: "medium" }}</div>
->>>>>>> 362f4a6f6a2f8fc545de8b612e91da7297f8d4f3
     </mat-card>
     <mat-card *ngFor="let thread of activeThread">
       <div>{{ getUserById(thread.author).displayName }}</div>
@@ -53,14 +47,16 @@
       <div>{{ thread.time | date: "medium" }}</div>
     </mat-card>
 
-    <editor [init]="{
-      menubar: 'file edit view',
-      toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-     }" [(ngModel)]="htmlThread">
+    <editor
+      [init]="{
+        menubar: 'file edit view',
+        toolbar:
+          'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+      }"
+      [(ngModel)]="htmlThread"
+    >
     </editor>
-    <button mat-button (click)="sendThreadMessage()">
-      Send
-    </button>
+    <button mat-button (click)="sendThreadMessage()">Send</button>
 
     <!-- <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
@@ -79,14 +75,9 @@
         </mat-hint>
         <mat-hint align="end">{{ message2.value.length }} / 256</mat-hint>
       </mat-form-field>
-<<<<<<< HEAD
-    </form>
-=======
       <button mat-button (click)="sendThreadMessage(message2.value)">
         Basic
       </button>
     </form> -->
->>>>>>> 362f4a6f6a2f8fc545de8b612e91da7297f8d4f3
   </div>
 </div>
-
