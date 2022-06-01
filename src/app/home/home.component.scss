@@ -68,6 +68,12 @@
     bottom: 0px;
     right: 0;
   }
+  input {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+  }
 }
 
 .tox-edit-area {

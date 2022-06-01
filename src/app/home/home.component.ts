@@ -7,6 +7,8 @@ import { User } from 'src/models/user.class';
 import { Directionality } from '@angular/cdk/bidi';
 import { DirectMassage } from 'src/models/directMessage.class';
 import { Thread } from 'src/models/thread.class';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -32,12 +34,54 @@ export class HomeComponent implements OnInit {
   htmlMessage!: any;
   htmlThread!: any;
 
+  images: string[] = [];
+  imageURL: any = [];
+
   constructor(
     private firestore: AngularFirestore,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: AngularFireStorage
   ) {}
 
+  upload(event: any) {
+    const randomId = Math.random().toString(36).substring(2);
+    this.storage.upload(`/images/${randomId}`, event.target.files[0]).then((data: any) => {
+      console.log(data);
+      this.storage
+      .ref(`/images/${randomId}`)
+      .getDownloadURL()
+      .subscribe((url: string) => {
+        this.images.push(url);
+      });
+    });  
+
+    
+
+    // this.images.push(`/images/${randomId}`);
+  }
+
+
+  // loadImageURL(randomId: string) {
+  //   this.storage
+  //   .ref(randomId)
+  //   .getDownloadURL()
+  //   .subscribe((url: string) => {
+  //     this.imageURL.push([randomId, url]);
+  //   });
+  // }
+
+  findImageURL(randomId: string){
+    // return this.imageURL.find((image: any) => image[0] == randomId)[1];
+  }
+
+
   ngOnInit(): void {
+
+    // this.storage
+    // .refFromURL('gs://slack-44d87.appspot.com/hohe-wellen-auf-see-im-sommer-hd-sommer-wallpaper.jpg')
+    // .getDownloadURL()
+    // .subscribe(console.log);
+
     this.firestore
       .collection('users')
       .valueChanges({ idField: 'userId' })
@@ -75,7 +119,12 @@ export class HomeComponent implements OnInit {
             })
             .sort((mess1: any, mess2: any) => {
               return mess1.time - mess2.time;
-            });
+            })
+            // .forEach((message: any) => {
+            //   message.imageLinks.forEach((link: string) => {
+            //     this.loadImageURL(link);
+            //   })
+            // });
           this.loadAllThreads();
         });
 
@@ -118,11 +167,14 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
+    
     let newMessage: Message = new Message();
     newMessage.content = this.htmlMessage;
     newMessage.author = this.authorId;
     newMessage.channelKey = this.activeChannel.channelid;
+    newMessage.imageLinks = this.images;
     this.firestore.collection('messages').add(newMessage.toJSON());
+    this.images = [];
   }
 
   openThread(message: any) {

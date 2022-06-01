@@ -26,6 +26,7 @@ import { DialogAddDirectMessageComponent } from './dialog-add-direct-message/dia
 import {MatSelectModule} from '@angular/material/select';
 import { ThreadComponent } from './thread/thread.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireStorageModule,
     NgxAuthFirebaseUIModule.forRoot(
       {
         projectId: 'slack-44d87',
