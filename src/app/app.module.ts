@@ -25,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
 import { DialogAddDirectMessageComponent } from './dialog-add-direct-message/dialog-add-direct-message.component';
 import {MatSelectModule} from '@angular/material/select';
 import { ThreadComponent } from './thread/thread.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ThreadComponent } from './thread/thread.component';
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
+    EditorModule,
     MatCardModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
