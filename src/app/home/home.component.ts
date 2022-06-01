@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.firestore
       .collection('users')
       .valueChanges({ idField: 'userId' })
@@ -142,14 +141,4 @@ export class HomeComponent implements OnInit {
 
     this.firestore.collection('threads').add(newThread.toJSON());
   }
-
-
-
-
-
-
-
-
-
-
 }

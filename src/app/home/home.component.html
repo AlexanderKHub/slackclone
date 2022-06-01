@@ -9,19 +9,23 @@
 
     <div class="center-div">
       <div class="editor-div">
-        <editor [init]="{
-          toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-          height: 150,
-          branding: false,
-          menubar:false,
-          statusbar: false,
-          browser_spellcheck: true
-        }" 
-        [(ngModel)]="htmlMessage">
+        <editor
+          [init]="{
+            toolbar:
+              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+            height: 150,
+            branding: false,
+            menubar: false,
+            statusbar: false,
+            browser_spellcheck: true,
+            plugins: 'image',
+            images_file_types: 'jpg,svg,webp',
+            file_picker_types: 'image'
+          }"
+          [(ngModel)]="htmlMessage"
+        >
         </editor>
-        <button mat-button (click)="sendMessage()">
-          Send
-        </button>
+        <button mat-button (click)="sendMessage()">Send</button>
       </div>
     </div>
   </div>
@@ -41,12 +45,13 @@
       <div class="editor-div">
         <editor
           [init]="{
-            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-              height: 150,
-              branding: false,
-              menubar:false,
-              statusbar: false,
-              browser_spellcheck: true
+            toolbar:
+              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+            height: 150,
+            branding: false,
+            menubar: false,
+            statusbar: false,
+            browser_spellcheck: true
           }"
           [(ngModel)]="htmlThread"
         >

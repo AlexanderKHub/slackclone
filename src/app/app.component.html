@@ -1,7 +1,7 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
     <div class="server-title">Slackclone test</div>
-    <div id="side-nav-content">
+    <div *ngIf="auth.userKey" id="side-nav-content">
       <b>Channels</b>
       <div class="channels-container">
         <ul>

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       key: 'jachsdvahc',
     }),
   ];
-  allDirectMessages: any = []
+  allDirectMessages: any = [];
 
   constructor(
     public dialog: MatDialog,
@@ -39,20 +39,21 @@ export class AppComponent implements OnInit {
       .subscribe((changes: any) => {
         this.allChannels = changes;
       });
-      
+
     this.authUser.user.subscribe((user) => {
-      if(!user?.uid) return;
+      this.auth.userKey = '';
+      if (!user?.uid) return;
       this.auth.userKey = user?.uid;
       this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
       this.firestore
-      .collection('directMessages')
-      .valueChanges({idField: 'directMessageId'})
-      .subscribe((changes: any) => {
-        this.allDirectMessages = changes.filter((message: any) => message.users.includes(this.auth.userKey))
-      });
+        .collection('directMessages')
+        .valueChanges({ idField: 'directMessageId' })
+        .subscribe((changes: any) => {
+          this.allDirectMessages = changes.filter((message: any) =>
+            message.users.includes(this.auth.userKey)
+          );
+        });
     });
-
-    
   }
 
   openDialog(): void {
