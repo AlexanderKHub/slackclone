@@ -7,17 +7,23 @@
       <div>{{ message.time | date: "medium" }}</div>
     </mat-card>
 
-    <editor
-      [init]="{
-        menubar: 'file edit view',
-        toolbar:
-          'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-      }"
-      [(ngModel)]="htmlMessage"
-    >
-    </editor>
-    <button mat-button (click)="sendMessage()">Send</button>
-
+    <div class="center-div">
+      <div class="editor-div">
+        <editor [init]="{
+          toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+          height: 200,
+          branding: false,
+          menubar:false,
+          statusbar: false,
+          browser_spellcheck: true
+        }" 
+        [(ngModel)]="htmlMessage">
+        </editor>
+        <button mat-button (click)="sendMessage()">
+          Send
+        </button>
+      </div>
+    </div>
     <!-- <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Message</mat-label>
@@ -47,17 +53,22 @@
       <div>{{ thread.time | date: "medium" }}</div>
     </mat-card>
 
-    <editor
-      [init]="{
-        menubar: 'file edit view',
-        toolbar:
-          'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-      }"
-      [(ngModel)]="htmlThread"
-    >
-    </editor>
-    <button mat-button (click)="sendThreadMessage()">Send</button>
-
+    <div class="center-div">
+      <div class="editor-div">
+        <editor
+          [init]="{
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+              height: 200,
+              branding: false,
+              menubar:false,
+              statusbar: false
+          }"
+          [(ngModel)]="htmlThread"
+        >
+        </editor>
+        <button mat-button (click)="sendThreadMessage()">Send</button>
+      </div>
+    </div>
     <!-- <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Thread Message</mat-label>
