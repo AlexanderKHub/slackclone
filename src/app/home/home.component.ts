@@ -29,12 +29,16 @@ export class HomeComponent implements OnInit {
   currentMessageId!: string;
   currentMessage!: Message;
 
+  htmlMessage!: any;
+  htmlThread!: any;
+
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+
     this.firestore
       .collection('users')
       .valueChanges({ idField: 'userId' })
@@ -114,9 +118,9 @@ export class HomeComponent implements OnInit {
     return this.users.find((user: any) => user.userId == userId);
   }
 
-  sendMessage(message: string) {
+  sendMessage() {
     let newMessage: Message = new Message();
-    newMessage.content = message;
+    newMessage.content = this.htmlMessage;
     newMessage.author = this.authorId;
     newMessage.channelKey = this.activeChannel.channelid;
     this.firestore.collection('messages').add(newMessage.toJSON());
@@ -129,13 +133,23 @@ export class HomeComponent implements OnInit {
     this.currentMessage = message;
   }
 
-  sendThreadMessage(message: string) {
+  sendThreadMessage() {
     let newThread: Thread = new Thread();
-    newThread.content = message;
+    newThread.content = this.htmlThread;
     newThread.author = this.authorId;
     newThread.messageKey = this.currentMessageId;
     console.log(newThread);
 
     this.firestore.collection('threads').add(newThread.toJSON());
   }
+
+
+
+
+
+
+
+
+
+
 }
