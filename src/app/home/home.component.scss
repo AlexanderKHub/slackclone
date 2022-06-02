@@ -1,11 +1,14 @@
+.flex {
+  display: flex;
+}
+
 .home-container {
   display: flex;
   height: 100%;
 }
 
-.message {
+.messages {
   width: 70%;
-  height: 100%;
 }
 
 .example-form {
@@ -24,27 +27,29 @@
   min-height: 100% !important;
 }
 
-// message
+.profile-picture {
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px;
+}
 
 .name {
   font-weight: 700;
+  margin-right: 5px;
 }
 
-.message-content {
-}
-
-.message-time {
+.time {
   font-size: 10px;
-  color: lightgrey;
+  color: grey;
 }
 
-// Thread
+.first-row {
+  display: flex;
+}
 
 .thread {
   width: 30%;
-}
-
-.openthread {
+  z-index: 3;
 }
 
 .center-div {

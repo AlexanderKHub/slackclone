@@ -1,14 +1,27 @@
 <h2>{{ activeChannel.name }}</h2>
 <div class="home-container">
-  <div class="message">
+  <div class="messages">
     <div class="messages-container">
-      <div *ngFor="let message of messages" (click)="openThread(message)">
-        <div>{{ getUserById(message.author).displayName }}</div>
-        <div [innerHTML]="message.content"></div>
-        <div *ngFor="let imgURL of message.imageLinks">
-          <a [href]="imgURL"><img [src]="imgURL" width="100" height="100" /></a>
+      <div
+        *ngFor="let message of messages"
+        (click)="openThread(message)"
+        class="flex"
+      >
+        <img class="profile-picture" src="assets/img/Download.png" alt="" />
+        <div>
+          <div class="first-row">
+            <div class="name">
+              {{ getUserById(message.author).displayName }}
+            </div>
+            <div class="time">{{ message.time | date: "medium" }}</div>
+          </div>
+          <div [innerHTML]="message.content"></div>
+          <div *ngFor="let imgURL of message.imageLinks">
+            <a [href]="imgURL"
+              ><img [src]="imgURL" width="100" height="100"
+            /></a>
+          </div>
         </div>
-        <div>{{ message.time | date: "medium" }}</div>
       </div>
     </div>
 
@@ -37,16 +50,14 @@
   <div *ngIf="showThread" class="thread">
     <div class="threads-container">
       <div *ngFor="let thread of activeThread">
-        <div>{{ getUserById(thread.author).displayName }}</div>
+        <img src="assets/img/Download.png" alt="" />
+        <div class="first-row">
+          <div class="name">{{ getUserById(thread.author).displayName }}</div>
+          <div class="time">{{ currentMessage.time | date: "medium" }}</div>
+        </div>
         <div [innerHTML]="thread.content"></div>
         <div *ngFor="let imgURL of thread.imageLinks">
           <a [href]="imgURL"><img [src]="imgURL" width="100" height="100" /></a>
-        </div>
-        <div>{{ thread.time | date: "medium" }}</div>
-        <div>
-          <div>{{ getUserById(currentMessage.author).displayName }}</div>
-          <div [innerHTML]="currentMessage.content"></div>
-          <div>{{ currentMessage.time | date: "medium" }}</div>
         </div>
       </div>
 
