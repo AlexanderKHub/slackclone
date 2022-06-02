@@ -34,40 +34,39 @@
     </div>
   </div>
 
-  <div *ngIf="showThread" class="threads-container">
-    <div>
-      <div>{{ getUserById(currentMessage.author).displayName }}</div>
-      <div [innerHTML]="currentMessage.content"></div>
-      <div>{{ currentMessage.time | date: "medium" }}</div>
-    </div>
-  </div>
+  <div *ngIf="showThread" class="thread">
+    <div class="threads-container">
+      <div *ngFor="let thread of activeThread">
+        <div>{{ getUserById(thread.author).displayName }}</div>
+        <div [innerHTML]="thread.content"></div>
+        <div *ngFor="let imgURL of thread.imageLinks">
+          <a [href]="imgURL"><img [src]="imgURL" width="100" height="100" /></a>
+        </div>
+        <div>{{ thread.time | date: "medium" }}</div>
+        <div>
+          <div>{{ getUserById(currentMessage.author).displayName }}</div>
+          <div [innerHTML]="currentMessage.content"></div>
+          <div>{{ currentMessage.time | date: "medium" }}</div>
+        </div>
+      </div>
 
-  <div *ngFor="let thread of activeThread">
-    <div>{{ getUserById(thread.author).displayName }}</div>
-    <div [innerHTML]="thread.content"></div>
-    <div *ngFor="let imgURL of thread.imageLinks">
-      <a [href]="imgURL"><img [src]="imgURL" width="100" height="100" /></a>
-    </div>
-    <div>{{ thread.time | date: "medium" }}</div>
-  </div>
-
-  <div class="center-div">
-    <div class="editor-div">
-      <editor
-        [init]="{
-          toolbar:
-            'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
-          height: 150,
-          branding: false,
-          menubar: false,
-          statusbar: false,
-          browser_spellcheck: true
-        }"
-        [(ngModel)]="htmlThread"
-      >
-      </editor>
-      <button mat-button (click)="sendThreadMessage()">Send</button>
-      <input type="file" (change)="uploadThread($event)" accept=".png,.jpg" />
+      <div class="editor-div">
+        <editor
+          [init]="{
+            toolbar:
+              'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+            height: 150,
+            branding: false,
+            menubar: false,
+            statusbar: false,
+            browser_spellcheck: true
+          }"
+          [(ngModel)]="htmlThread"
+        >
+        </editor>
+        <button mat-button (click)="sendThreadMessage()">Send</button>
+        <input type="file" (change)="uploadThread($event)" accept=".png,.jpg" />
+      </div>
     </div>
   </div>
 </div>
