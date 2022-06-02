@@ -49,15 +49,19 @@
 
   <div *ngIf="showThread" class="thread">
     <div class="threads-container">
-      <div *ngFor="let thread of activeThread">
-        <img src="assets/img/Download.png" alt="" />
-        <div class="first-row">
-          <div class="name">{{ getUserById(thread.author).displayName }}</div>
-          <div class="time">{{ currentMessage.time | date: "medium" }}</div>
-        </div>
-        <div [innerHTML]="thread.content"></div>
-        <div *ngFor="let imgURL of thread.imageLinks">
-          <a [href]="imgURL"><img [src]="imgURL" width="100" height="100" /></a>
+      <div *ngFor="let thread of activeThread" class="flex">
+        <img class="profile-picture" src="assets/img/Download.png" alt="" />
+        <div>
+          <div class="first-row">
+            <div class="name">{{ getUserById(thread.author).displayName }}</div>
+            <div class="time">{{ currentMessage.time | date: "medium" }}</div>
+          </div>
+          <div [innerHTML]="thread.content"></div>
+          <div *ngFor="let imgURL of thread.imageLinks">
+            <a [href]="imgURL"
+              ><img [src]="imgURL" width="100" height="100"
+            /></a>
+          </div>
         </div>
       </div>
 
