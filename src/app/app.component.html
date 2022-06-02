@@ -1,6 +1,9 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
+
     <div class="server-title">Slackclone test</div>
+
+
     <div *ngIf="auth.userKey" id="side-nav-content">
       <b class="sidenav-mini-title">Channels</b>
       <div>
@@ -14,7 +17,12 @@
           <li (click)="openDialog()" class="sidenav-mini-title basic-hover">+ Add Channel</li>
         </ul>
       </div>
-      <b class="sidenav-mini-title">Direct Messages</b>
+
+      <details>
+      <summary>
+        <b class="sidenav-mini-title">Direct Messages</b>
+        <span class="icon"><img src="assets/img/arrow-204-16.ico" alt=""></span>
+      </summary>
       <div>
         <ul>
           <li class="channels-container basic-hover"
@@ -23,17 +31,24 @@
           >
             {{ message.name }}
           </li>
+        
           <li (click)="openDialogDirectMessage()" class="sidenav-mini-title basic-hover">+ Add Direct Message</li>
+       
         </ul>
       </div>
+    </details>
     </div>
+
+
     <button id="log-out-button" mat-button color="warn" [routerLink]="''">
       Account Settings <img src="assets/img/settings-16.ico" alt="">
     </button>
   </mat-drawer>
+
   <mat-drawer-content>
     <div class="top-menu"></div>
     <!--main content-->
     <router-outlet></router-outlet>
   </mat-drawer-content>
+
 </mat-drawer-container>
