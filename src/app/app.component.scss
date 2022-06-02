@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100%;
 
   .side-drawer {
     width: 300px;
@@ -28,10 +28,10 @@
 }
 
 .router-outlet-div {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
 
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 #side-nav-content {
