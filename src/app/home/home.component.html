@@ -1,86 +1,90 @@
 <div class="home-container">
-  <h2>{{ activeChannel.name }}</h2>
-  <div class="messages">
-    <div class="messages-container">
-      <div
-        *ngFor="let message of messages"
-        (click)="openThread(message)"
-        class="flex"
-      >
-        <img class="profile-picture" src="assets/img/Download.png" alt="" />
-        <div>
-          <div class="first-row">
-            <div class="name">
-              {{ getUserById(message.author).displayName }}
+  
+  <div class="div-message-thread">
+    <div class="messages">
+      <h2>{{ activeChannel.name }}</h2>
+      <div class="messages-container">
+        <div
+          *ngFor="let message of messages"
+          (click)="openThread(message)"
+          class="flex"
+        >
+          <img class="profile-picture" src="assets/img/Download.png" alt="" />
+          <div>
+            <div class="first-row">
+              <div class="name">
+                {{ getUserById(message.author).displayName }}
+              </div>
+              <div class="time">{{ message.time | date: "medium" }}</div>
             </div>
-            <div class="time">{{ message.time | date: "medium" }}</div>
-          </div>
-          <div [innerHTML]="message.content"></div>
-          <div *ngFor="let imgURL of message.imageLinks">
-            <a [href]="imgURL"
-              ><img [src]="imgURL" width="100" height="100"
-            /></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="editor-div">
-      <editor
-        [init]="{
-          toolbar:
-            'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
-          height: 150,
-          branding: false,
-          menubar: false,
-          statusbar: false,
-          browser_spellcheck: true,
-          plugins: 'image',
-          images_file_types: 'jpg,svg,webp',
-          file_picker_types: 'image'
-        }"
-        [(ngModel)]="htmlMessage"
-      >
-      </editor>
-      <button mat-button (click)="sendMessage()">Send</button>
-      <input type="file" (change)="upload($event)" accept=".png,.jpg" />
-    </div>
-  </div>
-
-  <div *ngIf="showThread" class="thread">
-    <div class="threads-container">
-      <div *ngFor="let thread of activeThread" class="flex">
-        <img class="profile-picture" src="assets/img/Download.png" alt="" />
-        <div>
-          <div class="first-row">
-            <div class="name">{{ getUserById(thread.author).displayName }}</div>
-            <div class="time">{{ currentMessage.time | date: "medium" }}</div>
-          </div>
-          <div [innerHTML]="thread.content"></div>
-          <div *ngFor="let imgURL of thread.imageLinks">
-            <a [href]="imgURL"
-              ><img [src]="imgURL" width="100" height="100"
-            /></a>
+            <div [innerHTML]="message.content"></div>
+            <div *ngFor="let imgURL of message.imageLinks">
+              <a [href]="imgURL"
+                ><img [src]="imgURL" width="100" height="100"
+              /></a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="editor-div-thread">
+      <div class="editor-div">
         <editor
           [init]="{
             toolbar:
-              'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
             height: 150,
             branding: false,
             menubar: false,
             statusbar: false,
-            browser_spellcheck: true
+            browser_spellcheck: true,
+            plugins: 'image',
+            images_file_types: 'jpg,svg,webp',
+            file_picker_types: 'image'
           }"
-          [(ngModel)]="htmlThread"
+          [(ngModel)]="htmlMessage"
         >
         </editor>
-        <button mat-button (click)="sendThreadMessage()">Send</button>
-        <input type="file" (change)="uploadThread($event)" accept=".png,.jpg" />
+        <button mat-button (click)="sendMessage()">Send</button>
+        <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+      </div>
+    </div>
+
+    <div *ngIf="showThread" class="thread">
+      <div class="thread-header"><h2>Thread </h2><button mat-icon-button><mat-icon>close</mat-icon></button></div>
+      <div class="threads-container">
+        <div *ngFor="let thread of activeThread" class="flex">
+          <img class="profile-picture" src="assets/img/Download.png" alt="" />
+          <div>
+            <div class="first-row">
+              <div class="name">{{ getUserById(thread.author).displayName }}</div>
+              <div class="time">{{ currentMessage.time | date: "medium" }}</div>
+            </div>
+            <div [innerHTML]="thread.content"></div>
+            <div *ngFor="let imgURL of thread.imageLinks">
+              <a [href]="imgURL"
+                ><img [src]="imgURL" width="100" height="100"
+              /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-div-thread">
+          <editor
+            [init]="{
+              toolbar:
+                'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+              height: 150,
+              branding: false,
+              menubar: false,
+              statusbar: false,
+              browser_spellcheck: true
+            }"
+            [(ngModel)]="htmlThread"
+          >
+          </editor>
+          <button mat-button (click)="sendThreadMessage()">Send</button>
+          <input type="file" (change)="uploadThread($event)" accept=".png,.jpg" />
+        </div>
       </div>
     </div>
   </div>

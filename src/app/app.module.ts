@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ThreadComponent } from './thread/thread.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
