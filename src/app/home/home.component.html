@@ -44,13 +44,21 @@
           [(ngModel)]="htmlMessage"
         >
         </editor>
-        <button mat-button (click)="sendMessage()">Send</button>
-        <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+        <button id="sendMessage" mat-button (click)="sendMessage()">Send</button>
+        <button id="inputMessage" mat-icon-button (click)="inputMessage.click()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <input hidden type="file" #inputMessage (change)="upload($event)" accept=".png,.jpg" />
       </div>
     </div>
 
     <div *ngIf="showThread" class="thread">
-      <div class="thread-header"><h2>Thread </h2><button mat-icon-button><mat-icon>close</mat-icon></button></div>
+      <div class="thread-header">
+        <h2>Thread</h2>
+        <button mat-icon-button (click)="closeThread()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
       <div class="threads-container">
         <div *ngFor="let thread of activeThread" class="flex">
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
@@ -82,8 +90,11 @@
             [(ngModel)]="htmlThread"
           >
           </editor>
-          <button mat-button (click)="sendThreadMessage()">Send</button>
-          <input type="file" (change)="uploadThread($event)" accept=".png,.jpg" />
+          <button id="sendThread" mat-button (click)="sendThreadMessage()">Send</button>
+          <button id="inputThread" mat-icon-button (click)="inputThread.click()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <input hidden type="file" #inputThread (change)="uploadThread($event)" accept=".png,.jpg" />
         </div>
       </div>
     </div>

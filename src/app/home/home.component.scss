@@ -69,6 +69,7 @@
 }
 
 
+
 .editor-div {
   position: sticky;
   bottom: 0;
@@ -78,13 +79,13 @@
     width: 100%;
     height: 100%;
   }
-  button {
+  #sendMessage {
     position: absolute;
     min-height: unset !important;
     bottom: 0px;
     right: 0;
   }
-  input {
+  #inputMessage {
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -92,10 +93,29 @@
   }
 }
 
+
 .editor-div-thread {
-  // position: absolute;
-  // bottom: 0;
+  padding: 0 8px;
+  position: relative;
+
+  editor {
+    width: 100%;
+    height: 100%;
+  }
+  #sendThread {
+    position: absolute;
+    min-height: unset !important;
+    bottom: 0px;
+    right: 0;
+  }
+  #inputThread {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+  }
 }
+
 
 .tox-edit-area {
   // height: 200px !important;
@@ -105,7 +125,7 @@
 .thread-header {
   position: relative;
 
-  mat-button {
+  button {
     position: absolute;
     top: 0;
     right: 0;
@@ -124,6 +144,6 @@
   // border-left: solid 1px rgba($color: #000000, $alpha: 0.1);
   // position: relative;
   overflow-y: auto;
-  height: calc(100% - 33px);
+  height: calc(100%);
 
 }

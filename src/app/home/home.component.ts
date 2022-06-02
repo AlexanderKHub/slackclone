@@ -62,6 +62,11 @@ export class HomeComponent implements OnInit {
   }  
 
 
+  closeThread() {
+    this.showThread = false;
+  }
+
+
   ngOnInit(): void {
     this.getUsersFromFirestore();
     this.route.params.subscribe((params) => {
