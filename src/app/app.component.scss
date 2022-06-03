@@ -84,3 +84,10 @@ summary {
 summary::-webkit-details-marker {
   display: none;
 }
+
+.align-sidenav-content{
+  margin-right:8px;
+  display:flex;
+  
+  align-items:center;
+}

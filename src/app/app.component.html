@@ -13,11 +13,11 @@
     </summary>
       <div>
         <ul>
-          <li class="channels-container basic-hover"
+          <li class="channels-container basic-hover align-sidenav-content"
             [routerLink]="['home', auth.userKey, channel.channelid]"
             *ngFor="let channel of allChannels"
           >
-            # {{ channel.name }}
+            # {{ channel.name }} <mat-icon>more_vert</mat-icon>
           </li>
           <li (click)="openDialog()" class="sidenav-mini-title basic-hover">+ Add Channel</li>
         </ul>
