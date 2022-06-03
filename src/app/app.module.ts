@@ -28,6 +28,7 @@ import { ThreadComponent } from './thread/thread.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {MatIconModule} from '@angular/material/icon';
+import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-messages.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatIconModule} from '@angular/material/icon';
     DialogAddChannelComponent,
     DialogAddDirectMessageComponent,
     ThreadComponent,
+    DialogEditMessagesComponent,
   ],
   imports: [
     BrowserModule,

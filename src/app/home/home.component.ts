@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { Thread } from 'src/models/thread.class';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditMessagesComponent } from '../dialog-edit-messages/dialog-edit-messages.component';
 
 @Component({
   selector: 'app-home',
@@ -28,10 +30,15 @@ export class HomeComponent implements OnInit {
   images: string[] = [];
   imagesThread: string[] = [];
 
+  /// dialog
+  animal!: string;
+  name!: string;
+
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    public dialog: MatDialog
   ) {}
 
   upload(event: any) {
@@ -184,5 +191,19 @@ export class HomeComponent implements OnInit {
 
   deleteMessage(i: number) {
     this.messages.splice(i, 1);
+  }
+
+  editMessage(i: number) {
+    console.log(this.messages[i].content);
+
+    this.messages[i].content = '';
+    this.messages[i].content = 'neuer Text';
+  }
+
+  openDialog(i: number): void {
+    const dialogRef = this.dialog.open(DialogEditMessagesComponent, {
+      width: '350px',
+      data: { index: i, animal: this.animal },
+    });
   }
 }

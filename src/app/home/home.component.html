@@ -11,7 +11,13 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              <div class="edit-message" (click)="deleteMessage(i)">x</div>
+              <button
+                class="edit-message"
+                mat-raised-button
+                (click)="openDialog(i)"
+              >
+                Edit
+              </button>
               <div class="name">
                 {{ getUserById(message.author).displayName }}
               </div>

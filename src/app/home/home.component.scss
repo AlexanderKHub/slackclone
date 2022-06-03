@@ -1,5 +1,6 @@
 .flex {
   display: flex;
+  position: relative;
 
   cursor: pointer;
 
@@ -141,8 +142,7 @@
 
 .edit-message {
   position: absolute;
-  right: 100px;
+  left: 300px;
   width: 20px;
   height: 20px;
-  z-index: 20;
 }
