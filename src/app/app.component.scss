@@ -63,6 +63,7 @@
 
 details {
   user-select:none;
+  margin-bottom:20px;
 }
 
 details>summary span.icon {
@@ -83,4 +84,11 @@ summary {
 
 summary::-webkit-details-marker {
   display: none;
+}
+
+.align-sidenav-content{
+  margin-right:8px;
+  display:flex;
+  
+  align-items:center;
 }

@@ -1,22 +1,28 @@
 <mat-drawer-container class="container">
   <mat-drawer class="side-drawer" mode="side" opened>
 
-    <div class="server-title">Slackclone test</div>
+    <div class="server-title">Slackclone</div>
 
-
+    
+    
     <div *ngIf="auth.userKey" id="side-nav-content">
+      <details>
+      <summary>
       <b class="sidenav-mini-title">Channels</b>
+      <span class="icon"><img src="assets/img/arrow-204-16.ico" alt=""></span>
+    </summary>
       <div>
         <ul>
-          <li class="channels-container basic-hover"
+          <li class="channels-container basic-hover align-sidenav-content"
             [routerLink]="['home', auth.userKey, channel.channelid]"
             *ngFor="let channel of allChannels"
           >
-            # {{ channel.name }}
+            # {{ channel.name }} <mat-icon>more_vert</mat-icon>
           </li>
           <li (click)="openDialog()" class="sidenav-mini-title basic-hover">+ Add Channel</li>
         </ul>
       </div>
+    </details>
 
       <details>
       <summary>
