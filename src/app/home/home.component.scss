@@ -8,7 +8,6 @@
   }
 }
 
-
 .home-container {
   // display: flex;
   height: calc(100% - 83px);
@@ -68,8 +67,6 @@
   width: 35%;
 }
 
-
-
 .editor-div {
   position: sticky;
   bottom: 0;
@@ -93,7 +90,6 @@
   }
 }
 
-
 .editor-div-thread {
   padding: 0 8px;
   position: relative;
@@ -116,11 +112,9 @@
   }
 }
 
-
 .tox-edit-area {
   // height: 200px !important;
 }
-
 
 .thread-header {
   position: relative;
@@ -129,10 +123,8 @@
     position: absolute;
     top: 0;
     right: 0;
-
   }
 }
-
 
 .messages-container {
   overflow-y: auto;
@@ -145,5 +137,12 @@
   // position: relative;
   overflow-y: auto;
   height: calc(100%);
+}
 
+.edit-message {
+  position: absolute;
+  right: 100px;
+  width: 20px;
+  height: 20px;
+  z-index: 20;
 }

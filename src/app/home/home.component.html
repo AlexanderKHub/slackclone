@@ -1,17 +1,17 @@
 <div class="home-container">
-  
   <div class="div-message-thread">
     <div class="messages">
       <h2>{{ activeChannel.name }}</h2>
       <div class="messages-container">
         <div
-          *ngFor="let message of messages"
+          *ngFor="let message of messages; index as i"
           (click)="openThread(message)"
           class="flex"
         >
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
+              <div class="edit-message" (click)="deleteMessage(i)">x</div>
               <div class="name">
                 {{ getUserById(message.author).displayName }}
               </div>
@@ -44,11 +44,23 @@
           [(ngModel)]="htmlMessage"
         >
         </editor>
-        <button id="sendMessage" mat-button (click)="sendMessage()">Send</button>
-        <button id="inputMessage" mat-icon-button (click)="inputMessage.click()">
+        <button id="sendMessage" mat-button (click)="sendMessage()">
+          Send
+        </button>
+        <button
+          id="inputMessage"
+          mat-icon-button
+          (click)="inputMessage.click()"
+        >
           <mat-icon>add</mat-icon>
         </button>
-        <input hidden type="file" #inputMessage (change)="upload($event)" accept=".png,.jpg" />
+        <input
+          hidden
+          type="file"
+          #inputMessage
+          (change)="upload($event)"
+          accept=".png,.jpg"
+        />
       </div>
     </div>
 
@@ -64,7 +76,9 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              <div class="name">{{ getUserById(thread.author).displayName }}</div>
+              <div class="name">
+                {{ getUserById(thread.author).displayName }}
+              </div>
               <div class="time">{{ currentMessage.time | date: "medium" }}</div>
             </div>
             <div [innerHTML]="thread.content"></div>
@@ -90,11 +104,23 @@
             [(ngModel)]="htmlThread"
           >
           </editor>
-          <button id="sendThread" mat-button (click)="sendThreadMessage()">Send</button>
-          <button id="inputThread" mat-icon-button (click)="inputThread.click()">
+          <button id="sendThread" mat-button (click)="sendThreadMessage()">
+            Send
+          </button>
+          <button
+            id="inputThread"
+            mat-icon-button
+            (click)="inputThread.click()"
+          >
             <mat-icon>add</mat-icon>
           </button>
-          <input hidden type="file" #inputThread (change)="uploadThread($event)" accept=".png,.jpg" />
+          <input
+            hidden
+            type="file"
+            #inputThread
+            (change)="uploadThread($event)"
+            accept=".png,.jpg"
+          />
         </div>
       </div>
     </div>
