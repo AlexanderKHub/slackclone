@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DirectMassage } from 'src/models/directMessage.class';
 import { AuthUserService } from '../auth-user.service';
 
@@ -14,7 +15,8 @@ export class DialogAddDirectMessageComponent implements OnInit {
 
   constructor( 
     private firestore: AngularFirestore,
-    private auth: AuthUserService
+    private auth: AuthUserService,
+    public dialogRef: MatDialogRef<DialogAddDirectMessageComponent>
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class DialogAddDirectMessageComponent implements OnInit {
 
 
   onNoClick(){
-
+    this.dialogRef.close();
   }
 
   saveChannel(){
@@ -49,7 +51,7 @@ export class DialogAddDirectMessageComponent implements OnInit {
     this.firestore
     .collection('directMessages')
     .add(this.newDirectMessage.toJSON())
-        
+    this.dialogRef.close();
     
   }
 }
