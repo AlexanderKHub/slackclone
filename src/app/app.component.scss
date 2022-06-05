@@ -71,10 +71,19 @@ details>summary span.icon {
   height: 24px;
   transition: all 0.3s;
   margin-left: auto;
+  transform: rotate(270deg);
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon img{
+  width: 10px;
+  height: 10px;
 }
 
 details[open] summary span.icon {
-  transform: rotate(180deg);
+  transform: rotate(360deg);
 }
 
 summary {
@@ -89,6 +98,7 @@ summary::-webkit-details-marker {
 .align-sidenav-content{
   margin-right:8px;
   display:flex;
-  
+  justify-content: space-between;
   align-items:center;
+  width: 90%;
 }

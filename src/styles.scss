@@ -27,9 +27,9 @@ app-home {
 }
 
 .tox-tinymce {
-  border-radius: 0px !important;
-  border: 0 !important;
-  border-top: 1px solid rgba($color: #000000, $alpha: 0.1) !important;
+  // border-radius: 0px !important;
+  // border: 0 !important;
+  border: 1px solid rgba($color: #000000, $alpha: 0.3) !important;
 }
 
 *::-webkit-scrollbar,
@@ -41,5 +41,6 @@ app-home {
 }
 
 *::-webkit-scrollbar-thumb {        
-  box-shadow: inset 0 0 0 10px;
+  box-shadow: inset 0 0 0 10px rgba(128, 128, 128, 0.473);
+
 }

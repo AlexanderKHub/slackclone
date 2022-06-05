@@ -66,12 +66,14 @@
 .thread {
   height: 100%;
   width: 35%;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .editor-div {
   position: sticky;
   bottom: 0;
-  padding: 0 8px;
+  margin: 0 8px;
+  // border: 1px solid #80808094;
 
   editor {
     width: 100%;
@@ -92,8 +94,10 @@
 }
 
 .editor-div-thread {
-  padding: 0 8px;
+  margin: 0 8px;
   position: relative;
+  // border: 1px solid #80808094;
+  
 
   editor {
     width: 100%;
