@@ -189,10 +189,11 @@ export class HomeComponent implements OnInit {
     this.imagesThread = [];
   }
 
-  openDialog(i: number): void {
-    const dialogRef = this.dialog.open(DialogEditMessagesComponent, {
-      width: '350px',
-      data: { index: i, animal: this.animal },
-    });
+  openDialog(i: number) {
+    const messages = this.dialog.open(DialogEditMessagesComponent);
+    messages.componentInstance.messages = this.messages;
+    messages.componentInstance.index = i;
   }
+
+  //  dialog.componentInstance.userid = this.messagesI;
 }

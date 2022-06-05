@@ -8,21 +8,24 @@ import { HomeComponent } from '../home/home.component';
   styleUrls: ['./dialog-edit-messages.component.scss'],
 })
 export class DialogEditMessagesComponent implements OnInit {
-  home: object = HomeComponent;
+  messages!: any;
+  index!: number;
 
   constructor(private firestore: AngularFirestore) {}
 
   ngOnInit(): void {}
 
-  // deleteMessage(i: number) {
-  //  this.messages.splice(i, 1);
-  // }
+  deleteMessage() {
+    this.messages.splice(this.index, 1);
+  }
 
-  //editMessage(i: number) {
-  // console.log(this.messages[i].content);
-  // input = document.getElementById('edit-message-input');
+  editMessage() {
+    console.log(this.messages[this.index].content);
 
-  //  this.messages[i].content = '';
-  // this.messages[i].content = input.value;
-  //}
+    let input = (<HTMLInputElement>(
+      document.getElementById('edit-message-input')
+    )).value;
+    this.messages[this.index].content = '';
+    this.messages[this.index].content = input!;
+  }
 }
