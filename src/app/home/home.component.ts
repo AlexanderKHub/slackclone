@@ -189,17 +189,6 @@ export class HomeComponent implements OnInit {
     this.imagesThread = [];
   }
 
-  deleteMessage(i: number) {
-    this.messages.splice(i, 1);
-  }
-
-  editMessage(i: number) {
-    console.log(this.messages[i].content);
-
-    this.messages[i].content = '';
-    this.messages[i].content = 'neuer Text';
-  }
-
   openDialog(i: number): void {
     const dialogRef = this.dialog.open(DialogEditMessagesComponent, {
       width: '350px',
