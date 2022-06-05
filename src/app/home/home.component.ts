@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   allThreads!: any;
   currentMessageId!: string;
   currentMessage!: Message;
+  messageId!: string;
 
   htmlMessage!: any;
   htmlThread!: any;
@@ -193,6 +194,7 @@ export class HomeComponent implements OnInit {
     const messages = this.dialog.open(DialogEditMessagesComponent);
     messages.componentInstance.messages = this.messages;
     messages.componentInstance.index = i;
+    messages.componentInstance.id = this.messages.channelKey;
   }
 
   //  dialog.componentInstance.userid = this.messagesI;

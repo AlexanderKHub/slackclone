@@ -10,6 +10,7 @@ import { HomeComponent } from '../home/home.component';
 export class DialogEditMessagesComponent implements OnInit {
   messages!: any;
   index!: number;
+  id!: string;
 
   constructor(private firestore: AngularFirestore) {}
 
@@ -27,5 +28,11 @@ export class DialogEditMessagesComponent implements OnInit {
     )).value;
     this.messages[this.index].content = '';
     this.messages[this.index].content = input!;
+
+    this.saveMessages();
+  }
+
+  saveMessages() {
+    this.firestore.collection('messages').doc().update(this.messages);
   }
 }
