@@ -2,7 +2,7 @@
   <div class="div-message-thread">
     <div class="messages">
       <h2>{{ activeChannel.name }}</h2>
-      <div class="messages-container">
+      <div class="messages-container" #messagesChannel>
         <div
           *ngFor="let message of messages; index as i"
           (click)="openThread(message)"
@@ -35,6 +35,7 @@
 
       <div class="editor-div">
         <editor
+          apiKey="z8iu1rie4176in15qglvib02tl493lahzojojurs7xl4iody"
           [init]="{
             toolbar:
               'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
@@ -77,7 +78,7 @@
           <mat-icon>close</mat-icon>
         </button>
       </div>
-      <div class="threads-container">
+      <div class="threads-container" #messagesThreads>
         <div class="flex">
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
@@ -115,6 +116,7 @@
 
         <div class="editor-div-thread">
           <editor
+            apiKey="z8iu1rie4176in15qglvib02tl493lahzojojurs7xl4iody"
             [init]="{
               toolbar:
                 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',

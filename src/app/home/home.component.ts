@@ -1,5 +1,5 @@
 import { Message } from 'src/models/message.class';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
@@ -30,6 +30,9 @@ export class HomeComponent implements OnInit {
 
   images: string[] = [];
   imagesThread: string[] = [];
+
+  @ViewChild('messagesChannel') messagesChannelDiv!: ElementRef;
+  @ViewChild('messagesThreads') messagesThreadDiv!: ElementRef;
 
   /// dialog
   animal!: string;
@@ -171,7 +174,14 @@ export class HomeComponent implements OnInit {
     newMessage.imageLinks = this.images;
     this.firestore.collection('messages').add(newMessage.toJSON());
     this.images = [];
+    setTimeout(() => {this.scrollObjectDown(this.messagesChannelDiv)}, 100);
   }
+
+
+  scrollObjectDown(object: ElementRef) {
+    object.nativeElement.scrollTop = object.nativeElement.scrollHeight;
+  }
+
 
   openThread(message: any) {
     this.findMessageThread(message.messageId);
@@ -188,6 +198,7 @@ export class HomeComponent implements OnInit {
     newThread.imageLinks = this.imagesThread;
     this.firestore.collection('threads').add(newThread.toJSON());
     this.imagesThread = [];
+    setTimeout(() => {this.scrollObjectDown(this.messagesThreadDiv)}, 100);
   }
 
   openDialog(i: number) {
