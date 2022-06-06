@@ -17,7 +17,16 @@
             [routerLink]="['home', auth.userKey, channel.channelid]"
             *ngFor="let channel of allChannels"
           >
-            # {{ channel.name }} <mat-icon>more_vert</mat-icon>
+            # {{ channel.name }} 
+            <button mat-icon-button 
+              [matMenuTriggerFor]="taskMenu"
+              class="delete">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #taskMenu="matMenu">
+              <button mat-menu-item (click)="editChannel(channel)">Edit</button>
+              <button mat-menu-item (click)="deleteChannel(channel)">Delete</button>
+            </mat-menu>
           </li>
           <li (click)="openDialog()" class="sidenav-mini-title basic-hover">+ Add Channel</li>
         </ul>

@@ -29,6 +29,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {MatIconModule} from '@angular/material/icon';
 import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-messages.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-
     DialogAddDirectMessageComponent,
     ThreadComponent,
     DialogEditMessagesComponent,
+    DialogEditChannelComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-
     MatIconModule,
     FormsModule,
     MatSelectModule,
+    MatMenuModule,
     ReactiveFormsModule,
     EditorModule,
     MatCardModule,

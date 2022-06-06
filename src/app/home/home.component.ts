@@ -7,6 +7,7 @@ import { Thread } from 'src/models/thread.class';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditMessagesComponent } from '../dialog-edit-messages/dialog-edit-messages.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -207,9 +208,54 @@ export class HomeComponent implements OnInit {
     const messages = this.dialog.open(DialogEditMessagesComponent);
     messages.componentInstance.message = message;
     messages.componentInstance.type = type;
-    // messages.componentInstance.index = i;
-    // messages.componentInstance.id = this.messages.channelKey;
   }
 
-  //  dialog.componentInstance.userid = this.messagesI;
+
+  deleteMessage(message: any, type: string) {
+    if(type == 'message'){
+      this.firestore
+      .collection('messages')
+      .doc(message.messageId)
+      .delete()
+      .then(() => {
+        this.deleteThreadMessagesOfMessage(message);
+        this.deleteFilesOfMessage(message);
+      });
+    }
+    if(type == 'thread'){
+      this.firestore
+      .collection('threads')
+      .doc(message.threadId)
+      .delete();
+    }
+  }
+
+  deleteThreadMessagesOfMessage(message: any) {
+    this.firestore
+    .collection('threads', ref => ref.where('messageKey', '==', message.messageId))
+    .valueChanges({idField: 'threadId' })
+    .pipe(take(1))
+    .subscribe((threads: any) => {
+      threads.forEach((thread: any) => {
+        this.firestore
+        .collection('threads')
+        .doc(thread.threadId)
+        .delete()
+        .then(() => {
+          console.log(thread);
+          this.deleteFilesOfMessage(thread);
+        });
+      });
+    });
+  }
+
+  deleteFilesOfMessage(message: any) {
+    message.imageLinks.forEach((imageLink: string) => {
+      this.storage
+      .refFromURL(imageLink)
+      .delete();
+    });
+  }
+
+
 }

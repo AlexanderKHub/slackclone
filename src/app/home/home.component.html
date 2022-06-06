@@ -11,13 +11,15 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              <button
-                class="edit-message"
-                mat-raised-button
-                (click)="openDialog(message, 'message')"
-              >
-                Edit
+              <button mat-icon-button 
+                [matMenuTriggerFor]="taskMenu"
+                class="delete">
+                <mat-icon>more_vert</mat-icon>
               </button>
+              <mat-menu #taskMenu="matMenu">
+                <button mat-menu-item (click)="openDialog(message, 'message')">Edit</button>
+                <button mat-menu-item (click)="deleteMessage(message, 'message')">Delete</button>
+              </mat-menu>
               <div class="name">
                 {{ getUserById(message.author).displayName }}
               </div>
@@ -100,14 +102,15 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              Hallo
-              <button
-                class="edit-message"
-                mat-raised-button
-                (click)="openDialog(thread, 'thread')"
-              >
-                Edit
+              <button mat-icon-button 
+                [matMenuTriggerFor]="taskMenu"
+                class="delete">
+                <mat-icon>more_vert</mat-icon>
               </button>
+              <mat-menu #taskMenu="matMenu">
+                <button mat-menu-item (click)="openDialog(thread, 'thread')">Edit</button>
+                <button mat-menu-item (click)="deleteMessage(thread, 'thread')">Delete</button>
+              </mat-menu>
               <div class="name">
                 {{ getUserById(thread.author).displayName }}
               </div>
