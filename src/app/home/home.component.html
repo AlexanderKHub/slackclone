@@ -14,7 +14,7 @@
               <button
                 class="edit-message"
                 mat-raised-button
-                (click)="openDialog(i)"
+                (click)="openDialog(message, 'message')"
               >
                 Edit
               </button>
@@ -100,6 +100,14 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
+              Hallo
+              <button
+                class="edit-message"
+                mat-raised-button
+                (click)="openDialog(thread, 'thread')"
+              >
+                Edit
+              </button>
               <div class="name">
                 {{ getUserById(thread.author).displayName }}
               </div>

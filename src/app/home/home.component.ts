@@ -172,9 +172,10 @@ export class HomeComponent implements OnInit {
     newMessage.author = this.authorId;
     newMessage.channelKey = this.activeChannel.channelid;
     newMessage.imageLinks = this.images;
-    this.firestore.collection('messages').add(newMessage.toJSON());
+    this.firestore.collection('messages').add(newMessage.toJSON()).then(() => {
+      this.scrollObjectDown(this.messagesChannelDiv);
+    });
     this.images = [];
-    setTimeout(() => {this.scrollObjectDown(this.messagesChannelDiv)}, 100);
   }
 
 
@@ -196,16 +197,18 @@ export class HomeComponent implements OnInit {
     newThread.author = this.authorId;
     newThread.messageKey = this.currentMessageId;
     newThread.imageLinks = this.imagesThread;
-    this.firestore.collection('threads').add(newThread.toJSON());
+    this.firestore.collection('threads').add(newThread.toJSON()).then(() => {
+      this.scrollObjectDown(this.messagesThreadDiv);
+    });
     this.imagesThread = [];
-    setTimeout(() => {this.scrollObjectDown(this.messagesThreadDiv)}, 100);
   }
 
-  openDialog(i: number) {
+  openDialog(message: any, type: string) {
     const messages = this.dialog.open(DialogEditMessagesComponent);
-    messages.componentInstance.messages = this.messages;
-    messages.componentInstance.index = i;
-    messages.componentInstance.id = this.messages.channelKey;
+    messages.componentInstance.message = message;
+    messages.componentInstance.type = type;
+    // messages.componentInstance.index = i;
+    // messages.componentInstance.id = this.messages.channelKey;
   }
 
   //  dialog.componentInstance.userid = this.messagesI;

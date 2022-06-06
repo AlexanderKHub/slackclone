@@ -1,4 +1,4 @@
 hello
-<input type="text" name="" id="edit-message-input" />
+<input type="text" name="" #editMessageInput >
 <button (click)="deleteMessage()">delete</button>
-<button (click)="editMessage()">edit</button>
+<button (click)="editMessage(editMessageInput.value)">edit</button>
