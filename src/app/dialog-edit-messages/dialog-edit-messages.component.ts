@@ -33,6 +33,9 @@ export class DialogEditMessagesComponent implements OnInit {
   }
 
   saveMessages() {
-    this.firestore.collection('messages').doc().update(this.messages);
+    this.firestore
+      .collection('messages')
+      .doc(this.messages.messagesId)
+      .update(this.messages);
   }
 }
