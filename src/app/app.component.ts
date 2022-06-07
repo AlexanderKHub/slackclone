@@ -42,23 +42,29 @@ export class AppComponent implements OnInit {
       .valueChanges({ idField: 'channelid' })
       .subscribe((changes: any) => {
         this.allChannels = changes;
+        this.auth.firstChannelId = this.allChannels[0] ? this.allChannels[0].channelid : '';
+        this.subscribeToUserLogin();
       });
 
+    
+  }
+
+
+  subscribeToUserLogin() {
     this.authUser.user.subscribe((user) => {
       this.auth.userKey = '';
       if (!user?.uid) return;
       this.auth.userKey = user?.uid;
-      this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
+      this.router.navigateByUrl(`/home/${this.auth.userKey}/${this.auth.firstChannelId}`);
       this.firestore
-        .collection('directMessages')
-        .valueChanges({ idField: 'directMessageId' })
-        .subscribe((changes: any) => {
-          this.allDirectMessages = changes.filter((message: any) =>
-            message.users.includes(this.auth.userKey)
-          );
-        });
+      .collection('directMessages')
+      .valueChanges({ idField: 'directMessageId' })
+      .subscribe((changes: any) => {
+        this.allDirectMessages = changes.filter((message: any) => message.users.includes(this.auth.userKey));
+      });
     });
   }
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddChannelComponent, {});
@@ -79,7 +85,7 @@ export class AppComponent implements OnInit {
     .doc(channel.channelid)
     .delete()
     .then(() => {
-      this.router.navigateByUrl(`/home/${this.auth.userKey}/test`);
+      this.router.navigateByUrl(`/home/${this.auth.userKey}/${this.auth.firstChannelId}`);
       this.firestore
       .collection('messages')
       .valueChanges({idField: 'messageId' })
