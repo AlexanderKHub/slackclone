@@ -65,20 +65,25 @@
         <button id="sendMessage" mat-button (click)="sendMessage()">
           Send
         </button>
-        <button
-          id="inputMessage"
-          mat-icon-button
-          (click)="inputMessage.click()"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-        <input
-          hidden
-          type="file"
-          #inputMessage
-          (change)="upload($event)"
-          accept=".png,.jpg"
-        />
+        <div class="input-file-div-div">
+          <div class="input-file-div">
+            <button
+              id="inputMessage"
+              mat-icon-button
+              (click)="inputMessage.click()"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+            <span>{{inputMessage.value}}</span>
+          </div>
+          <input
+            hidden
+            type="file"
+            #inputMessage
+            (change)="upload($event)"
+            accept=".png,.jpg"
+          />
+        </div>
       </div>
     </div>
 
@@ -158,20 +163,25 @@
           <button id="sendThread" mat-button (click)="sendThreadMessage()">
             Send
           </button>
-          <button
-            id="inputThread"
-            mat-icon-button
-            (click)="inputThread.click()"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-          <input
-            hidden
-            type="file"
-            #inputThread
-            (change)="uploadThread($event)"
-            accept=".png,.jpg"
-          />
+          <div class="input-file-div-div">
+            <div class="input-file-div">
+              <button
+                id="inputThread"
+                mat-icon-button
+                (click)="inputThread.click()"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+              <span>{{inputThread.value}}</span>
+            </div>
+            <input
+              hidden
+              type="file"
+              #inputThread
+              (change)="uploadThread($event)"
+              accept=".png,.jpg"
+            />
+          </div>
         </div>
       </div>
     </div>

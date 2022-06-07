@@ -85,12 +85,6 @@
     bottom: 0px;
     right: 0;
   }
-  #inputMessage {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    z-index: 10;
-  }
 }
 
 .editor-div-thread {
@@ -107,12 +101,6 @@
     min-height: unset !important;
     bottom: 0px;
     right: 0;
-  }
-  #inputThread {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    z-index: 10;
   }
 }
 
@@ -154,3 +142,18 @@
   position: absolute;
   left: 300px;
 }
+
+
+.input-file-div {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.input-file-div-div {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  z-index: 10;
+}
+
