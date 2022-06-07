@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -17,6 +18,7 @@ import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-ch
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  mobileQuery!: MediaQueryList;
   title = 'slack';
   allChannels: any = [
     new Channel({
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
     }),
   ];
   allDirectMessages: any = [];
+  private _mobileQueryListener: () => void;
 
   constructor(
     public dialog: MatDialog,
@@ -34,7 +37,13 @@ export class AppComponent implements OnInit {
     public authUser: AngularFireAuth,
     private router: Router,
     private storage: AngularFireStorage,
-  ) {}
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+  ) {
+
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit(): void {
     this.firestore

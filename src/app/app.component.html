@@ -1,10 +1,9 @@
 <mat-drawer-container class="container"  autosize>
-  <mat-drawer class="side-drawer" mode="side" opened>
+
+  <mat-drawer class="side-drawer" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? 'false' : 'true'">
 
     <div class="server-title">Slackclone</div>
 
-    
-    
     <div *ngIf="auth.userKey" id="side-nav-content">
       <details>
       <summary>
@@ -67,3 +66,5 @@
   </mat-drawer-content>
 
 </mat-drawer-container>
+
+<button mat-icon-button class="toggle-btn" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
