@@ -94,6 +94,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUsersFromFirestore();
     this.route.params.subscribe((params) => {
+      this.closeThread();
       this.authorId = params['uid'];
       this.getActiveChannelFromFirestore(params['channelid']);
       this.getMessagesAndThreadsFromFirestore();
