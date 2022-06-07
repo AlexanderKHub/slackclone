@@ -2,6 +2,14 @@
   <div class="div-message-thread">
     <div class="messages">
       <h2>{{ activeChannel.name }}</h2>
+      <div *ngIf="activeChannel.users">
+        <span *ngFor="let user of activeChannel.users">
+          {{getUserById(user).displayName}}
+        </span>
+      </div>
+      <div *ngIf="activeChannel.description">
+        {{activeChannel.description}}
+      </div>
       <div class="messages-container" #messagesChannel>
         <div
           *ngFor="let message of messages; index as i"
