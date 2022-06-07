@@ -181,6 +181,7 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
+    if (!this.htmlMessage && !this.images[0]) return;
     let newMessage: Message = new Message();
     newMessage.content = this.htmlMessage;
     newMessage.author = this.authorId;
@@ -206,6 +207,7 @@ export class HomeComponent implements OnInit {
   }
 
   sendThreadMessage() {
+    if (!this.htmlThread && !this.imagesThread[0]) return;
     let newThread: Thread = new Thread();
     newThread.content = this.htmlThread;
     newThread.author = this.authorId;
