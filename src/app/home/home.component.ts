@@ -35,6 +35,9 @@ export class HomeComponent implements OnInit {
   @ViewChild('messagesChannel') messagesChannelDiv!: ElementRef;
   @ViewChild('messagesThreads') messagesThreadDiv!: ElementRef;
 
+  disableSendMessage = false;
+  disableSendThread = false;
+
   /// dialog
   animal!: string;
   name!: string;
@@ -47,6 +50,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   upload(event: any) {
+    this.disableSendMessage = true;
     const randomId = Math.random().toString(36).substring(2);
     this.storage
       .upload(`/images/${randomId}`, event.target.files[0])
@@ -56,11 +60,16 @@ export class HomeComponent implements OnInit {
           .getDownloadURL()
           .subscribe((url: string) => {
             this.images.push(url);
+            this.disableSendMessage = false;
           });
+      })
+      .catch(() => {
+        this.disableSendMessage = false;
       });
   }
 
   uploadThread(event: any) {
+    this.disableSendThread = true;
     const randomId = Math.random().toString(36).substring(2);
     this.storage
       .upload(`/imagesThread/${randomId}`, event.target.files[0])
@@ -70,7 +79,11 @@ export class HomeComponent implements OnInit {
           .getDownloadURL()
           .subscribe((url: string) => {
             this.imagesThread.push(url);
+            this.disableSendThread = false;
           });
+      })
+      .catch(() => {
+        this.disableSendThread = false;
       });
   }
 

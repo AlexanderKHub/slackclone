@@ -24,7 +24,7 @@
                 </button>
                 <button
                   mat-menu-item
-                  (click)="deleteMessage(message, 'message')"
+                  (click)="deleteMessage(message, 'message'); closeThread()"
                 >
                   Delete
                 </button>
@@ -49,7 +49,7 @@
           apiKey="z8iu1rie4176in15qglvib02tl493lahzojojurs7xl4iody"
           [init]="{
             toolbar:
-              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+              'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
             height: 150,
             branding: false,
             menubar: false,
@@ -62,7 +62,9 @@
           [(ngModel)]="htmlMessage"
         >
         </editor>
-        <button id="sendMessage" mat-button (click)="sendMessage()">
+        <button id="sendMessage"
+        mat-button (click)="sendMessage(); htmlMessage = ''; inputMessage.value = ''"
+        [disabled]="disableSendMessage">
           Send
         </button>
         <div class="input-file-div-div">
@@ -160,7 +162,10 @@
             [(ngModel)]="htmlThread"
           >
           </editor>
-          <button id="sendThread" mat-button (click)="sendThreadMessage()">
+          <button id="sendThread" 
+          mat-button 
+          (click)="sendThreadMessage(); htmlThread = ''; inputThread.value = ''"
+          [disabled]="disableSendThread">
             Send
           </button>
           <div class="input-file-div-div">
