@@ -11,14 +11,23 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              <button mat-icon-button 
+              <button
+                mat-icon-button
                 [matMenuTriggerFor]="taskMenu"
-                class="delete">
+                class="delete"
+              >
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #taskMenu="matMenu">
-                <button mat-menu-item (click)="openDialog(message, 'message')">Edit</button>
-                <button mat-menu-item (click)="deleteMessage(message, 'message')">Delete</button>
+                <button mat-menu-item (click)="openDialog(message, 'message')">
+                  Edit
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="deleteMessage(message, 'message')"
+                >
+                  Delete
+                </button>
               </mat-menu>
               <div class="name">
                 {{ getUserById(message.author).displayName }}
@@ -102,14 +111,20 @@
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>
             <div class="first-row">
-              <button mat-icon-button 
+              <button
+                mat-icon-button
                 [matMenuTriggerFor]="taskMenu"
-                class="delete">
+                class="delete"
+              >
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #taskMenu="matMenu">
-                <button mat-menu-item (click)="openDialog(thread, 'thread')">Edit</button>
-                <button mat-menu-item (click)="deleteMessage(thread, 'thread')">Delete</button>
+                <button mat-menu-item (click)="openDialog(thread, 'thread')">
+                  Edit
+                </button>
+                <button mat-menu-item (click)="deleteMessage(thread, 'thread')">
+                  Delete
+                </button>
               </mat-menu>
               <div class="name">
                 {{ getUserById(thread.author).displayName }}

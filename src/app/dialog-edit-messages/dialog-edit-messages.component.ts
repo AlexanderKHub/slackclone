@@ -22,25 +22,24 @@ export class DialogEditMessagesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  
-
-
-
   editMessage(newContent: string) {
     this.message.content = newContent;
-    if(this.type == 'message'){
+    if (this.type == 'message') {
       this.firestore
-      .collection('messages')
-      .doc(this.message.messageId)
-      .update(this.message);
+        .collection('messages')
+        .doc(this.message.messageId)
+        .update(this.message);
     }
-    if(this.type == 'thread'){
+    if (this.type == 'thread') {
       this.firestore
-      .collection('threads')
-      .doc(this.message.threadId)
-      .update(this.message);
+        .collection('threads')
+        .doc(this.message.threadId)
+        .update(this.message);
     }
     this.dialogRef.close();
   }
 
+  onNoClick() {
+    this.dialogRef.close();
+  }
 }

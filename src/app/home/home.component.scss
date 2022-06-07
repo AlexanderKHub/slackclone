@@ -97,7 +97,6 @@
   margin: 0 8px;
   position: relative;
   // border: 1px solid #80808094;
-  
 
   editor {
     width: 100%;
@@ -149,4 +148,9 @@
   left: 300px;
   width: 20px;
   height: 20px;
+}
+
+.delete {
+  position: absolute;
+  left: 300px;
 }

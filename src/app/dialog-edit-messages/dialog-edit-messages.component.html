@@ -1,3 +1,24 @@
-hello
-<input type="text" name="" #editMessageInput >
+<!--
+ <input type="text" name="" #editMessageInput />
 <button (click)="editMessage(editMessageInput.value)">edit</button>
+-->
+
+<h1 mat-dialog-title>Edit Message</h1>
+<div mat-dialog-content class="dialog-content">
+  <p>Please enter change?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>new Message</mat-label>
+    <input #editMessageInput matInput />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button
+    mat-button
+    [mat-dialog-close]=""
+    (click)="editMessage(editMessageInput.value)"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</div>
