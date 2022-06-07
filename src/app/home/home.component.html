@@ -2,19 +2,19 @@
   <div class="div-message-thread">
     <div class="messages">
       <h2>{{ activeChannel.name }}</h2>
-      <div *ngIf="activeChannel.users">
+      <div *ngIf="activeChannel.users" style="border-bottom: solid 1px rgba(0, 0, 0, 0.1);">
         <span *ngFor="let user of activeChannel.users">
           {{getUserById(user).displayName}}
         </span>
       </div>
-      <div *ngIf="activeChannel.description">
+      <div *ngIf="activeChannel.description"  style="border-bottom: solid 1px rgba(0, 0, 0, 0.1);">
         {{activeChannel.description}}
       </div>
       <div class="messages-container" #messagesChannel>
         <div
           *ngFor="let message of messages; index as i"
           (click)="openThread(message)"
-          class="flex"
+          class="flex message-box"
         >
           <img class="profile-picture" src="assets/img/Download.png" alt="" />
           <div>

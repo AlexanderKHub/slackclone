@@ -6,12 +6,20 @@
 
   &:hover {
     background-color: rgba($color: #000000, $alpha: 0.02);
+    .delete {
+      display: unset;
+    }
   }
+}
+
+.message-box {
+  width: 100%;
+
 }
 
 .home-container {
   // display: flex;
-  height: calc(100% - 83px);
+  height: calc(100% - 103px);
 }
 
 .div-message-thread {
@@ -121,8 +129,9 @@
 }
 
 .delete {
+  display: none;
   position: absolute;
-  left: 300px;
+  right: 10px;
 }
 
 
