@@ -65,7 +65,7 @@
 
 .editor-div {
   position: sticky;
-  bottom: 0;
+  bottom: 10px;
   margin: 0 20px;
   // border: 1px solid #80808094;
 
@@ -147,5 +147,9 @@
   bottom: 0px;
   left: 0;
   z-index: 10;
+}
+
+.channel-header{
+  margin-left:20px;
 }
 
