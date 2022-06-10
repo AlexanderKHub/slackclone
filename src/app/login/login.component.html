@@ -1,12 +1,6 @@
 <ngx-auth-firebaseui
-  [guestEnabled]="true"
-  [providers]="[
-    providers.Google,
-    providers.Facebook,
-    providers.Twitter,
-    providers.Microsoft,
-    providers.Github
-  ]"
+  [guestEnabled]="false"
+  [providers]="[providers.Google]"
   (onSuccess)="logInSuccess($event)"
   (onError)="logInError($event)"
 ></ngx-auth-firebaseui>
