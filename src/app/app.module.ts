@@ -20,16 +20,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { DialogAddDirectMessageComponent } from './dialog-add-direct-message/dialog-add-direct-message.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { ThreadComponent } from './thread/thread.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-messages.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
 
 @NgModule({

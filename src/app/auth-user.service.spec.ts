@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthUserService } from './auth-user.service';
 
 describe('AuthUserService', () => {
