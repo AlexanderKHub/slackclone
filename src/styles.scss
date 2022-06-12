@@ -12,6 +12,24 @@ body {
   }
 }
 
+.d-none {
+  display: none;
+}
+
+#loginIncorrect {
+  height: 100px;
+  width: 100px;
+  color: red;
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -40,7 +58,6 @@ app-home {
   border: 10px solid transparent;
 }
 
-*::-webkit-scrollbar-thumb {        
+*::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 0 10px rgba(128, 128, 128, 0.473);
-
 }
