@@ -88,6 +88,31 @@ export class AppComponent implements OnInit {
     dialogRef.componentInstance.channel = channel;
   }
 
+  editChat(messageChat:any){
+
+  }
+
+  deleteChat(messageChat:any){
+    this.firestore
+    .collection('message')
+    .doc(messageChat.directMessageId)
+    .delete()
+    .then(() => {
+      this.router.navigateByUrl(`/home/${this.auth.userKey}/${this.auth.firstChannelId}`);
+      this.firestore
+      .collection('messages')
+      .valueChanges({idField: 'messageId' })
+      .pipe(take(1))
+      .subscribe((messages) => {
+        messages
+        .filter((message: any) => message.channelKey == messageChat.directMessageId)
+        .forEach((message: any) => {
+          this.deleteMessage(message);
+        })
+      })
+    })
+  }
+
   deleteChannel(channel: any) {
     this.firestore
     .collection('channel')

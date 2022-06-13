@@ -31,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogEditMessagesComponent } from './dialog-edit-messages/dialog-edit-messages.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
+import { DialogEditChatComponent } from './dialog-edit-chat/dialog-edit-chat.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-ch
     ThreadComponent,
     DialogEditMessagesComponent,
     DialogEditChannelComponent,
+    DialogEditChatComponent,
   ],
   imports: [
     BrowserModule,

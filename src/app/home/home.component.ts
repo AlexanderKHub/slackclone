@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('messagesChannel') messagesChannelDiv!: ElementRef;
   @ViewChild('messagesThreads') messagesThreadDiv!: ElementRef;
+  @ViewChild('messagesDiv') messagesDiv!: ElementRef;
 
   disableSendMessage = false;
   disableSendThread = false;
@@ -89,6 +90,9 @@ export class HomeComponent implements OnInit {
 
   closeThread() {
     this.showThread = false;
+    if(window.innerWidth <= 500){
+      this.messagesDiv.nativeElement.style = 'display:unset;'
+    }
   }
 
   ngOnInit(): void {
@@ -205,6 +209,9 @@ export class HomeComponent implements OnInit {
     this.currentMessageId = message.messageId;
     this.showThread = true;
     this.currentMessage = message;
+    if(window.innerWidth <= 500){
+      this.messagesDiv.nativeElement.style = 'display:none;'
+    }
   }
 
   sendThreadMessage() {
