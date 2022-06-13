@@ -11,6 +11,7 @@ import { AuthUserService } from './auth-user.service';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { DialogAddDirectMessageComponent } from './dialog-add-direct-message/dialog-add-direct-message.component';
 import { DialogEditChannelComponent } from './dialog-edit-channel/dialog-edit-channel.component';
+import { DialogEditChatComponent } from './dialog-edit-chat/dialog-edit-chat.component';
 
 @Component({
   selector: 'app-root',
@@ -88,13 +89,14 @@ export class AppComponent implements OnInit {
     dialogRef.componentInstance.channel = channel;
   }
 
-  editChat(messageChat:any){
-
+  editChat(directMessageChannel:any){
+    const dialogRef = this.dialog.open(DialogEditChatComponent);
+    dialogRef.componentInstance.directMessageChannel = directMessageChannel;
   }
 
   deleteChat(messageChat:any){
     this.firestore
-    .collection('message')
+    .collection('directMessages')
     .doc(messageChat.directMessageId)
     .delete()
     .then(() => {
