@@ -3,24 +3,36 @@
   <p>Add Channel Name:</p>
   <mat-form-field appearance="fill">
     <mat-label>Channel name</mat-label>
-    <input matInput [(ngModel)]="newDirectMessage.name">
+    <input matInput [(ngModel)]="newDirectMessage.name" />
   </mat-form-field>
   <p>Who would you like to create a Chat with ?</p>
   <mat-form-field appearance="fill">
     <mat-label>Users</mat-label>
     <mat-select [formControl]="selectedUsers" multiple>
       <mat-select-trigger>
-        {{selectedUsers.value ? selectedUsers.value[0] : ''}}
-        <span *ngIf="selectedUsers.value?.length > 1" class="example-additional-selection">
-          (+{{selectedUsers.value.length - 1}} {{selectedUsers.value?.length === 2 ? 'other' : 'others'}})
+        {{ selectedUsers.value ? selectedUsers.value[0].displayName : "" }}
+        <span
+          *ngIf="selectedUsers.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ selectedUsers.value.length - 1 }}
+          {{ selectedUsers.value?.length === 2 ? "other" : "others" }})
         </span>
       </mat-select-trigger>
-      <mat-option *ngFor="let user of usersWithoutMe()" [value]="user">{{user.displayName}}</mat-option>
+      <mat-option *ngFor="let user of usersWithoutMe()" [value]="user">{{
+        user.displayName
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
-
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="" (click)="saveChannel()" cdkFocusInitial>Ok</button>
+  <button
+    mat-button
+    [mat-dialog-close]=""
+    (click)="saveChannel()"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
 </div>

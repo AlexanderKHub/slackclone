@@ -21,6 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   logInError(event: any) {
-    // Handle Error
+    alert(event);
   }
 }
